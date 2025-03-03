@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Suply - Spa & Bienestar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --beige-light: #f5f1e8;
+            --beige-medium: #e8e0d0;
+            --beige-dark: #d7cbb9;
+            --accent: #a6937c;
+            --text-dark: #5a4e3e;
+            --text-light: #8c7e6b;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: var(--beige-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        
+        .logo span {
+            font-weight: 600;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 40px;
+        }
+        
+        .nav-menu li a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu li a:hover {
+            color: var(--accent);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: all 0.3s ease;
+            background-color: var(--text-dark);
+        }
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(245, 241, 232, 0.6), rgba(245, 241, 232, 0.8)), url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Fondo-inicio.jpg-0KL3vDx7OCelLhRKH8Blsr8mGPs0cT.jpeg') center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            letter-spacing: 3px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--accent);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--text-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .services {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        
+        .section-title .line {
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .service-card {
+            background-color: var(--beige-light);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--beige-medium);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        
+        .service-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .about {
+            padding: 100px 0;
+            background-color: var(--beige-medium);
+        }
+        
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            letter-spacing: 2px;
+        }
+        
+        .about-content p {
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+        
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+        
+        .testimonial-card {
+            background-color: var(--beige-light);
+            padding: 40px;
+            border-radius: 10px;
+            margin: 0 auto;
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: """;
+            font-size: 150px;
+            color: var(--beige-medium);
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            font-family: serif;
+            line-height: 1;
+            opacity: 0.5;
+        }
+        
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-details h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .author-details p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .cta {
+            padding: 100px 0;
+            background-color: var(--beige-medium);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-col ul li a {
+            color: var(--beige-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-col p {
+            color: var(--beige-light);
+            margin-bottom: 15px;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info span {
+            margin-left: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--beige-light);
+            font-size: 0.9rem;
+        }
+        
+        /* WhatsApp flotante - MODIFICADO */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--beige-light); /* Beige claro */
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transition: all 0.3s;
+            text-decoration: none; /* Quitar línea azul */
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        
+        .whatsapp-float i {
+            font-size: 30px;
+            color: white; /* Logo blanco */
+        }
+        
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .about-image, .about-content {
+                flex: none;
+                width: 100%;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                gap: 0;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 16px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">ROYAL<span>SUPLY</span></a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>EXPERIENCIA DE LUJO PARA TU BIENESTAR</h1>
+            <p>Descubre un oasis de tranquilidad donde el lujo y la relajación se fusionan para brindarte una experiencia única que rejuvenecerá tu cuerpo y mente.</p>
+            <a href="https://wa.me/5352985407?text=Hola%20quisiera%20obtener%20una%20reserva" class="btn" target="_blank">Reservar ahora</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Servicios</h2>
+                <div class="line"></div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Masajes Terapéuticos</h3>
+                    <p>Nuestras terapeutas expertas aliviarán la tensión muscular y el estrés con técnicas personalizadas para cada cliente.</p>
+                    <a href="https://wa.me/5352985407?text=Hola%20quisiera%20obtener%20información%20sobre%20los%20masajes%20terapéuticos" class="btn" target="_blank">Saber más</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-face-smile"></i>
+                    </div>
+                    <h3>Tratamientos Faciales</h3>
+                    <p>Revitaliza tu piel con nuestros tratamientos faciales de lujo que hidratan, tonifican y rejuvenecen.</p>
+                    <a href="https://wa.me/5352985407?text=Hola%20quisiera%20obtener%20información%20sobre%20los%20tratamientos%20faciales" class="btn" target="_blank">Saber más</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hot-tub-person"></i>
+                    </div>
+                    <h3>Terapia de Luz</h3>
+                    <p>Experimenta los beneficios de nuestra terapia de luz avanzada que mejora la apariencia de la piel y promueve la relajación profunda.</p>
+                    <a href="https://wa.me/5352985407?text=Hola%20quisiera%20obtener%20información%20sobre%20la%20terapia%20de%20luz" class="btn" target="_blank">Saber más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container about-container">
+            <div class="about-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Foto-inf.jpg-Hb38J6I1yD1huZ9nGg7CsRmdbHf93r.jpeg" alt="Royal Supply Spa - Terapia de Luz">
+            </div>
+            <div class="about-content">
+                <h2>Sobre Royal Suply</h2>
+                <p>En Royal Suply, creemos que el verdadero lujo reside en tomarse un momento para cuidarse a uno mismo. Nuestro spa nació de la pasión por crear un espacio donde la elegancia se fusiona con el bienestar.</p>
+                <p>Con años de experiencia, nuestro equipo de terapeutas certificados se dedica a proporcionar tratamientos excepcionales utilizando productos orgánicos y técnicas innovadoras para garantizar una experiencia única.</p>
+                <a href="https://wa.me/5352985407?text=Hola%20quisiera%20conocer%20más%20sobre%20Royal%20Suply" class="btn" target="_blank">Conoce nuestra historia</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Testimonios</h2>
+                <div class="line"></div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">Royal Suply superó todas mis expectativas. El ambiente, el servicio y los tratamientos fueron simplemente excepcionales. Me sentí completamente renovada después de mi día de spa, y definitivamente regresaré.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Cliente.jpg-6NwZi3LZg7r5HZQpiEyFhocBRxK7eP.jpeg" alt="Cliente">
+                    </div>
+                    <div class="author-details">
+                        <h4>María García</h4>
+                        <p>Cliente regular</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta" class="cta">
+        <div class="container">
+            <h2>Regálate un momento de lujo</h2>
+            <p>Nuestros paquetes especiales están diseñados para brindarte la experiencia de spa perfecta. Reserva hoy y comienza tu viaje hacia el bienestar total.</p>
+            <a href="https://wa.me/5352985407?text=Hola%20quisiera%20obtener%20una%20reserva" class="btn" target="_blank">Reservar ahora</a>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Royal Suply</h3>
+                    <p>Un oasis de tranquilidad donde el lujo y la relajación se fusionan para brindarte una experiencia única.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/royal.suply?mibextid=ZbWKwL" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/royalsuply?igsh=eDE4Zjh3Mm52N3Nj" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#services">Servicios</a></li>
+                        <li><a href="#about">Nosotros</a></li>
+                        <li><a href="#testimonials">Testimonios</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="https://wa.me/5352985407?text=Hola%20quisiera%20obtener%20información%20sobre%20los%20masajes%20terapéuticos" target="_blank">Masajes terapéuticos</a></li>
+                        <li><a href="https://wa.me/5352985407?text=Hola%20quisiera%20obtener%20información%20sobre%20los%20tratamientos%20faciales" target="_blank">Tratamientos faciales</a></li>
+                        <li><a href="https://wa.me/5352985407?text=Hola%20quisiera%20obtener%20información%20sobre%20la%20terapia%20de%20luz" target="_blank">Terapia de luz</a></li>
+                        <li><a href="https://wa.me/5352985407?text=Hola%20quisiera%20obtener%20información%20sobre%20las%20terapias%20corporales" target="_blank">Terapias corporales</a></li>
+                        <li><a href="https://wa.me/5352985407?text=Hola%20quisiera%20obtener%20información%20sobre%20los%20paquetes%20de%20spa" target="_blank">Paquetes de spa</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contacto</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Calle República #416 A altos % Correa y San Martin, Camagüey, Cuba</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>casamagdacmg@gmail.com</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+53 52985407</span>
+                    </div>
+                    <div class="contact-info">
+                        <a href="https://maps.app.goo.gl/hn7nPwUK5tJAUqKi8" target="_blank" class="btn" style="margin-top: 15px;">
+                            <i class="fas fa-map-marked-alt"></i> Ver ubicación
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Royal Suply Spa. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp flotante -->
+    <a href="https://wa.me/5352985407?text=Hola%20quisiera%20obtener%20una%20reserva" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Navbar móvil
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+        
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll(".nav-menu li a").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
+        
+        // Scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
